@@ -1,0 +1,34 @@
+import pandas as pd
+
+# after = write the names of the excel workbook names 
+excel1 = 'workbook1.xlsx'
+excel2 = 'workbook2.xlsx'
+
+
+#df is a two dimension data structure e.g. data with tables and rows
+
+df1 = pd.read_excel(excel1)
+df2 = pd.read_excel(excel2)
+
+print(df1)
+
+
+#Determine which values are important to you
+
+values1 = df1[['Orderdate','Region','Rep','Item','Unitcost','Total']]
+values2 = df2[['Orderdate','Region','Rep','Item','Unitcost','Total']]
+
+
+#state all the dataframes you want your python script to use
+dateframes = [values1,values2]
+
+#concatenate the dataframes together
+join=pd.concat(dateframes)
+
+#write a new excel file with the dataframes on it'
+# specify the name of the new file in the round brackets
+join.to_excel("output.xlsx")
+
+
+# In your ouput you can see that both excel sheets are combined in one worksheet
+# with the indexing (new workbook starts at index 0)
